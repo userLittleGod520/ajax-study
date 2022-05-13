@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link crossorigin="anonymous" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!-- 跨源的一个请求设置  将不会携带 这个网址里面的cookie-->
+    <!-- crossorgin='anonymous' -->
+</head>
+<body>
+    <div class="container">
+        <div class='col-md-12'>
+            <h1 class="page-header">
+                jquery发送ajax请求
+            </h1>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="get">
+            <button class='btn btn-primary'>Get请求</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="post">
+            <button class="btn btn-success">Post请求</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="global">
+            <button class="btn btn-info">通用请求</button>
+        </div>
+        </div> 
+    </div>
+    <script>
+        // get请求
+        $('#get').click(function(){ 
+            // $.get() 有四个参数 
+            //  第一个参数给谁发 第二个参数是发送什么参数 是对象{a:100,b:200} 
+            //  第三个参数是一个回调参数是响应体 
+            //  第四个参数是 响应体类型 json
+            $.get('http://127.0.0.1:8000/jquery',{a:100,b:200},function(){
+                console.log('get方法已经结束');
+            });
+        });
+        // post请求
+        $('#post').click(function(){
+            $.post('http://127.0.0.1:8000/jquery',{a:100,b:200},function(){
+                console.log('post方法已经结束');
+            });
+        });
+        // 发布通用方法
+        
+    </script>
+</body>
+</html>

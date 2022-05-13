@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/template.js"></script>
+</head>
+<body>
+    <div id="user"></div>
+    <script type="text/html" id="moban">
+        <div>姓名:{{ name }}</div>
+        <div>年龄:{{ age }}</div>
+        <div>性别:{{ gender }}</div>
+        <div>住址:{{ address }}</div>
+    </script>
+    <script>
+        // 1、定义模板结构
+        // 2、预调用模板引擎
+        var data = {
+            name:'lishen',
+            age:19,
+            gender:'男',
+            address:'广东省高新技术技工学校',    
+        }
+        // 调用模板引擎
+        var htmlstr = template('moban',data);
+        // console.log(htmlstr);
+        // 3、渲染HTML结构
+       document.getElementById('user').innerHTML = htmlstr;
+        // 4、封装template函数
+    </script>
+</body>
+</html>

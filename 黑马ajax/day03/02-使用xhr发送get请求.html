@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+    // xhr的readyState属性 表示当前Ajax所处的状态
+    // 带参数的请求  在请求地址上添加 参数即可 后面? 拼接的字符都是 查询字符串
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','http://liulongbin.top:3006/api/getbooks?id=1');
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if ( xhr.readyState === 4 && xhr.status === 200){
+                // 获取数据
+                console.log(xhr.responseText);
+                // 打印的status：200 是数据，而xhr.status 是http响应的一部分
+            }
+        }
+        
+    </script>
+</body>
+</html>

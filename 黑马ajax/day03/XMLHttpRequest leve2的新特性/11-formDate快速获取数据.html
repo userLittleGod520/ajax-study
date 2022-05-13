@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #form{
+            margin: 100px 100px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="form">
+        <!-- autocomplete 属性 阻止自动填充行为 -->
+        <p>用户名: <label for=""><input type="text" class='form-control' name="uname" autocomplete="off"></label ></p>
+        <p>密&nbsp;&nbsp;&nbsp;码: <label for=""><input type="password" class='form-control' name="password" autocomplete="off"></label></p>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+    <script>
+        // 使用formData() 对象管理表单
+        // 1、创建ForData 实例
+        var fd = new FormData();
+        // 2、调用append函数， 向fd 中追加数据
+        fd.append('uname','zs');
+        fd.append('upwd','123456');       
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST','http://www.liulongbin.top:3006/api/formdata');
+        // xhr.setRequestHeader('Content-Type','applaction/x-www-form-urlencoded');
+        xhr.send(fd);
+        xhr.onreadystatechange = function(){
+            if ( xhr.readyState === 4 && xhr.status === 200){
+                console.log(JSON.parse(xhr.responseText));
+            }
+        }
+    </script>
+</body>
+</html>

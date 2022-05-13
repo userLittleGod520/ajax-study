@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body style="background-color:rgb(246, 253, 254);">
+    
+    <form action="" method="POST" class="form-inline" role="form">
+    
+        <div class="form-group">
+            <label class="sr-only" for="">label</label>
+            <input type="file" class="form-control" id="files" placeholder="Input field">
+        </div>
+        <button type="button" id='ok' class="btn btn-primary">上传</button>
+        <img src="" id="img" alt="">
+        <br>
+        <img src="./img/loading.gif" id="img2" style="width:10%; display: none;" alt="">
+    </form>
+    <script>  
+    $(function(){
+        // 监听的ajax请求被发起了
+        $(document).ajaxStart(function(){
+            $('#img2').show();
+        });
+        
+        // 监听的ajax请求完成之后
+        $(document).ajaxStop(function(){
+            $('#img2').hide();
+        })
+    })  
+        $('#ok').on('click',function(){
+            var files = $('#files')[0].files;
+            if ( files.length <= 0){
+                return alert('请选择你要上传文件');
+            }
+            // console.log('用户选择了待提交的文件');
+            var fd = new FormData();
+            fd.append('avatar',files[0]);
+            $.ajax({
+                method:'POST',
+                url:'http://www.liulongbin.top:3006/api/upload/avatar',
+                data:fd,
+                processData:false,
+                contentType:false,
+                success:function(res){
+                    console.log(res);
+                    if (res.status === 200){
+                        $('#img').attr('src','http://www.liulongbin.top:3006' +res.url);
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

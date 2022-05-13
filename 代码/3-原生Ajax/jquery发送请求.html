@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link crossorigin="anonymous" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!-- 跨源的一个请求设置  将不会携带 这个网址里面的cookie-->
+    <!-- crossorgin='anonymous' -->
+</head>
+<body>
+    <div class="container">
+        <div class='col-md-12'>
+            <h1 class="page-header">
+                jquery发送ajax请求
+            </h1>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="get">
+            <button class='btn btn-primary'>Get请求</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="post">
+            <button class="btn btn-success">Post请求</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" id="global">
+            <button class="btn btn-info">通用请求</button>
+        </div>
+        </div> 
+    </div>
+    <script>
+        $('#get').click(function(){
+            $.get('http://127.0.0.1:8000/jquery',{a:100,b:200},function(){
+                console.log('执行完毕')
+            });
+        });
+        $('#post').click(function(){
+            $.post('http://127.0.0.1:8000/jquery',{a:200,b:300},function(){
+                console.log('执行完毕');
+            });
+        });
+        $('#global').click(function(){
+            $.ajax({
+                // url 
+                url:'http://127.0.0.1:8000/jquery',
+                // 参数
+                data:{a:100,b:200},
+                // 请求类型
+                type: 'GET',
+                // 响应体的结果
+                dataType:'json',
+                // 成功的回调
+                success:function(data){
+                    // console.log(data);
+                },
+                // 超时时间
+                timeout: 2000,
+                // 失败的回调
+                // error: function(){
+                //     console.log('出错了!');
+                // },
+                // 头信息
+                headers: {
+                    c:300,
+                    d:400,
+                }
+            });
+        })
+    </script>
+</body>
+</html>

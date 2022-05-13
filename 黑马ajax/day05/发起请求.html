@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="contaiener">
+        <button id="btn1" class="btn btn-success">GET请求</button>
+        <button id="btn2" class="btn btn-info">POST请求</button>
+    </div>
+    <script>
+        $(function(){
+        // jQuery发送 get请求
+         $('#btn1').on('click',function(){
+            $.ajax({
+                method:'GET',
+                url: 'http://www.liulongbin.top:3006/api/getbooks',
+                data:{
+                    id:1
+                },
+                success:function(res){
+                    console.log(res);
+                }
+            })
+        })
+        // jquery发送POST请求
+         $('#btn2').on('click',function(){
+             $.ajax({
+                 method:'POST',
+                 url:'http://www.liulongbin.top:3006/api/addbook',
+                 data:{
+                     bookname:'我和我的勇士',
+                     author:'科尔',
+                     publisher:'广州出版社',
+                 },
+                 success:function(res){
+                     console.log(res);
+                 }
+             })
+         })
+        })
+     
+    </script>
+</body>
+</html>

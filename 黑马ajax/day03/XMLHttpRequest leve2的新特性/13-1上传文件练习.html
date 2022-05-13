@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #img{
+            position: absolute;
+            top:100px;
+            /* border:1px solid red; */
+        }
+    </style>
+</head>
+<body>
+
+        <div class="form-group">
+            <label class="sr-only" for="">label</label>
+            <input type="file" class="form-control" id="files" placeholder="Input field">
+        </div>
+        <button type="submit" id="ok" class="btn btn-primary">上传文件</button>
+        <img src="" id="img" alt="">
+    <script>
+        var ok = document.querySelector('#ok');
+        ok.addEventListener('click',function(){
+            var files = document.querySelector('#files').files;
+            if ( files.length <= 0){
+                return alert('请选择你的文件');
+            }
+            // console.log('已经选择待上传文件');
+          var fd = new FormData();
+            // 将用户选择的文件 添加到 FormData 中去
+            fd.append('avatar',files[0]);
+            // 使用xhr对象 发起上传文件的请求
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST','http://www.liulongbin.top:3006/api/upload/avatar');
+            xhr.send(fd);
+            xhr.onreadystatechange = function(){
+                if ( xhr.readyState === 4 && xhr.status === 200){
+                    var data = JSON.parse(xhr.responseText);
+                    // console.log(data);
+                    if ( data.status == 200){
+                        // console.log('上传成功!');
+                        var img = document.querySelector('#img');
+                        img.src = 'http://www.liulongbin.top:3006'+ data.url;
+                    }else{
+                        alert('上传失败!')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

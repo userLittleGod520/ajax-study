@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击发送</button>
+    <button>点击取消</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+        let x = null;
+        btn[0].addEventListener('click',function(){
+            x = new XMLHttpRequest();
+            x.open('get','http://127.0.0.1:8000/delay');
+            x.send();
+
+            // 取消请求 abort 流产,使中止
+        });
+        btn[1].onclick = function(){
+            x.abort(0);
+        }
+    </script>
+</body>
+</html>

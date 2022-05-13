@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .result{
+            width: 200px;
+            height: 200px;
+            border:1px solid red;
+            padding:10px;
+        }
+        .box{
+            width:960px;
+            /* border:1px solid green; */
+            margin: 100px auto; 
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <button>获取Ajax请求</button>
+        <div class="result"></div>
+    </div>
+    <script>
+        // 获取页面元素
+        var result = document.querySelector('.result');
+        var button = document.querySelector('button');
+        // 按钮点击事件
+        button.onclick = function(){
+            var xhr = new XMLHttpRequest();
+            // 超时设置 2s 之内没响应我们就取消
+            xhr.timeout = 2000;
+            // 超时回调  
+            xhr.ontimeout = function(){
+                alert('请求超时，请返回页面');
+            };
+            // 网络异常 点击offline 开启离线网页 断网测试
+            xhr.onerror = function(){
+                alert('你的网络似乎出现了问题?请检查你的网络');
+            }
+            xhr.open('get','http://127.0.0.1:8000/delay');
+            xhr.send();
+            xhr.onreadystatechange = function(){
+                if ( xhr.readyState === 4){
+                    if ( xhr.status >= 200 && xhr.status <300){
+                        // result.innerHTML = xhr.response;
+
+                        // 1、手动转换 使用JSON.parse方法
+                        // let data = JSON.parse(xhr.response);
+                        // result.innerHTML = data.name;
+                        // console.log(data);
+
+                        // 2、自动转换 设置响应体数据的类型 为 'json' 
+                        // xhr.responseType = 'json'; 
+                        result.innerHTML = xhr.response;
+                        console.log(xhr.response)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

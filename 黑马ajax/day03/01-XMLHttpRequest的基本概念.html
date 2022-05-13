@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // XMLHttpRequest是浏览器给JavaScript获取服务器数据的对象
+        // 使用xhr发送GET请求
+        // 1、创建xhr对象
+        var xhr = new XMLHttpRequest();
+        // 2、调用open函数  请求方式和请求地址
+        xhr.open('GET','http://liulongbin.top:3006/api/getbooks');
+        // 3、调用send函数   发送ajax请求
+        xhr.send();
+        // 4、监听 onreadystartechange事件 状态码 status 请求状态 readyState
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === 4 &&  xhr.status === 200){
+                // 服务器响应成功
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+</html>

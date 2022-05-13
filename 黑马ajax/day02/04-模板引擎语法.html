@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/template-web.js"></script>
+</head>
+<body>
+    <div class="container"></div>
+    <script type='text/html' id="moban">
+        <h1>{{name}}</h1>
+        <h2>{{age}}</h2>
+        <h3>{{@text}}</h3>
+        <div>{{if flag === 0}}flag的值是0{{else if flag ===1}}flag的值是1{{/if}}</div>
+        <ul>
+            {{each hobby}}
+            <li>索引是:{{$index}},循环项是:{{$value}}</li>
+            {{/each}}
+        </ul>
+    </script>
+    <script>
+        // art-template模板引擎语法
+        // 提供了{{}}语法 进行变量输出 循环数组等操作 标准语法
+        // 原文输出 想要输出原文 前面加 @
+        // 条件输出 在里面使用 {{if value}}按需要输出的内容{{/if}} 
+        var data = {name:'lishen',age:18,text:'<h1>我是原文输出测试</h1>',flag:1,hobby:['吃饭','睡觉','打篮球']};
+        var htmlstr = template('moban',data);
+        console.log(htmlstr);
+        $('.container').html(htmlstr);
+    </script>
+</body>
+</html>

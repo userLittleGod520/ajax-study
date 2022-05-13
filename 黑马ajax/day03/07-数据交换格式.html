@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 这是一个对象
+        var obj = {a:'hello',b:'world'};
+
+        // 这是一个JSON字符串，本质是一个字符串 ' '单引号' 包裹起来 表示这个只是一个 字符串
+        var data = '{"a":"hello","b":"world"}'  
+
+        // JSON和js对象的转换  JSON.parse() 方法
+        var obj = JSON.parse( '{"a":"hello","b":"world"}');
+        console.log(obj);
+
+        // js对象转换为 JSON对象  JSON.stringify() 方法
+        var str = {name:'lishen',age:19};
+        var json = JSON.stringify(str);
+        console.log(json);
+    </script>
+</body>
+</html>

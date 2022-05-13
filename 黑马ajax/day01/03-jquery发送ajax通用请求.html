@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery.min.js"></script>
+</head>
+<body>
+    <button>发送ajax请求</button>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                $.ajax({
+                    // url:'http://liulongbin.top:3006/api/getbooks',
+                    // type:'GET',
+                    // data:{id:1},
+                    // success:function(res){
+                    //      console.log(res);
+                    // },
+                    // error:function(){
+                    //     console.log('请求失败');
+                    // }
+
+                // 使用post请求
+                url:'http://liulongbin.top:3006/api/addbook',
+                type:'POST',
+                data:{
+                    bookname:'水浒传2',
+                    author:'施耐庵',
+                    publisher:'广州出版社'
+                },
+                success:function(res){
+                    console.log(res);
+                }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

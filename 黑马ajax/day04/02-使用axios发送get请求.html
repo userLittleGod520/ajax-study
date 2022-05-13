@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="btn">发起get请求</button>
+    <script>
+        // 使用axios 发送get请求
+        // axios.get('url',{params:{参数}}).then(callback) 返回的数据并不是res 而是res.data  
+        //  其他六个属性都是axios包装的
+        var btn = document.querySelector('#btn');
+        btn.addEventListener('click',function(){
+            // 发起axios 请求
+            var url = 'http://www.liulongbin.top:3006/api/get';
+            var paramsData = {name:'zs',age:18};
+            axios.get(url,{paramsData}).then(function(res){
+                console.log(res.data);
+            })
+        })
+    </script>
+</body> 
+</html>

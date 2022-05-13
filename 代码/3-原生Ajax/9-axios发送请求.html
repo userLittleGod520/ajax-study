@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+    <script>
+        // axios 获取比较完整 很清晰看到结构 
+        const btn = document.querySelectorAll('button');
+        btn[0].onclick = function(){
+            //配置 baseURL
+            axios.defaults.baseURL = 'http://127.0.0.1:8000';
+            // get请求
+            axios.get('/axios-server',{
+                //url 参数
+                params:{
+                    id:1,
+                    vip:7
+                },
+                // 请求头信息
+                header:{
+                    name:'lishen',
+                    age:19
+                }
+            }).then(value =>{
+                console.log(value);
+            })
+        }
+
+        // post方法
+        // btn[1].onclick = function(){
+        //     axios.post('/axios-server',{
+        //             username:'admin',
+        //             password:'admin' 
+        //         },
+        //         {
+        //         params: {
+        //             id:200,
+        //             vip:9
+        //         },
+        //         // 请求参数
+        //         headers: {
+        //             height:160,
+        //             weight:160,
+        //         },
+        //         // 请求体
+        //     }); 
+        // }
+
+        // axios发送通用方法
+        btn[2].onclick = function(){
+            axios({
+                // 请求方法
+                method:'POST',
+                // url 
+                url:'axios-server',
+                //url 参数
+                params: {
+                    vip:10,
+                    level:30
+                },
+                // 头信息
+                headers: {
+                    a:100,
+                    b:200
+                },
+                // 请求体参数
+                data:{
+                    username: 'admin',
+                    password: 'admin'
+                }
+            })
+        }
+    </script>
+</body>
+</html>

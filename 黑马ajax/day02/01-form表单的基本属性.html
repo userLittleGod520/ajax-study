@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.css">
+</head>
+<body>
+    <form method="get" action="/login" id="f1">
+        <label for="">用户名:<input type="text" name="username"></label>
+        <label for="">密码:<input type="password" name='password'></label>
+        <input type="submit">
+    </form>
+    <script>
+        // form表单的基本属性
+        // 1、action属性 用于表单提交信息提交到哪个URL 没有地址则提交本地页面
+
+        // 2、method属性 用于表单提交的请求方式 get和post
+        
+        // 3、enctype属性 如果有文件上传的需要使用 multipart/form-data 默认为application/x-www-form-urlencoded
+        // 4、表单同步提交的优点和解决办法
+        // 缺点: 1、form提交后，页面跳转。跳转到action的URL地址，用户体验差劲
+        //       2、form提交后，返回表单页面之前的数据和状态都会丢失
+        // 解决办法
+        // 让表单采集数据，用Ajax技术提交数据给服务器
+        // 监听表单事件 submit 
+        
+        // 5、阻止表单默认行为  表单默认行为就是提交表单
+        // e.preventDefault()
+       
+        // 6、获取表单里面的全部数据 serialize()函数 可以一次性获取表单里面的全部数据
+        // $(选择器).serialize();
+        $(function(){
+            // 1、绑定表单提交事件
+            // $('#f1').submit(function(e){
+            //     alert('提交了页面');
+            //     // 阻止默认行为
+            //     e.preventDefault();
+            // })
+
+            // 2、第二种绑定方法
+            $('#f1').on('submit',function(e){
+                alert('提交了页面');
+                e.preventDefault();
+                // 获取表单里面的数据
+                var info = $('#f1').serialize();
+                console.log(info);
+            })
+        })
+    </script>
+</body>
+</html>

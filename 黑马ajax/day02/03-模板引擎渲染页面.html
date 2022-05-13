@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery.min.js"></script>
+    <!-- 1、导入模板文件 -->
+    <!-- 在window全局多个函数，叫做template('模板的id',需要渲染的数据对象) -->
+    <script src="./js/template-web.js"></script>
+    <style>
+        .box{
+            width:1000px;
+            
+            margin: 100px auto;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+   <!-- 4、渲染html结构 -->
+   <div class="container">
+
+   </div>
+    <!-- 3、定义模板 -->
+    <!-- 3-1 模板的html结构 必须写到 script中 -->
+    <script type="text/html" id="user">
+        <div class="box">
+        <div class="title">{{title}}</div>
+        <div>姓名:<span class="name">{{name}}</span></div>
+        <div>年龄:<span  class="age">{{age}}</span></div>
+        <div>是否会员:<span  class="isVip">{{isVip}}</span></div>
+        <div>注册时间:<span class='regTime'>{{regTime}}</span></div>
+        <div>爱好:
+        <ul class="hobby">
+          <li>爱好1:</li>
+          <li>爱好2:</li>
+        </ul></div>
+    </div>
+    </script>
+    <script>
+        // 2、定义需要调用 的数据
+        var data = {
+            title: '用户信息',
+            name:'李神',
+            age:19,
+            isVip:true,
+            regTime: new Date(),
+            hobby:['吃饭','睡觉','打豆豆']
+        }
+
+        // 4、调用template函数
+       var htmlstr = template('user',data);
+       console.log(htmlstr);
+       $('.container').html(htmlstr)
+    </script>
+</body>
+</html>

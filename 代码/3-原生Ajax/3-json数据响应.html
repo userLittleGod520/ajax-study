@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .result{
+            width: 200px;
+            height: 200px;
+            border:1px solid red;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="result"></div>
+    <script>
+        // 获取页面元素
+        var result = document.querySelector('.result');
+        // 添加鼠标按下事件
+        window.addEventListener('keydown',function(){
+            var xhr = new XMLHttpRequest();
+            // 设置响应体数据的类型
+            xhr.responseType = 'json';
+            xhr.open('post','http://127.0.0.1:8000/server');
+            xhr.send();
+            xhr.onreadystatechange = function(){
+                if ( xhr.readyState === 4){
+                    if ( xhr.status >= 200 && xhr.status <300){
+                        // result.innerHTML = xhr.response;
+
+                        // 1、手动转换 使用JSON.parse方法
+                        // let data = JSON.parse(xhr.response);
+                        // result.innerHTML = data.name;
+                        // console.log(data);
+
+                        // 2、自动转换 设置响应体数据的类型 为 'json' 
+                        // xhr.responseType = 'json'; 
+                        result.innerHTML = xhr.response.name;
+                        console.log(xhr.response)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
